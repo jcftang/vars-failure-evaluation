@@ -1,0 +1,7 @@
+---
+- shell: "[ -f /tmp/done_this ] && echo 'done' || echo ''"
+  register: result
+- command: chdir=/tmp echo test
+  when: result.stdout.find('done') == -1
+- command: touch /tmp/done_this creates=/tmp/done_this
+
